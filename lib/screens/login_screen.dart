@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
 
@@ -17,6 +18,24 @@ class _LoginScreenState extends State<LoginScreen> {
   SMIBool? isHandsUp; //Se tapa los ojos
   SMITrigger? trigSuccess; //Se emociona
   SMITrigger? trigFail; //Se pone sad
+  //1) FocusNode
+  final emailFocus = FocusNode();
+  final passFocus = FocusNode();
+  //2) Crear los listeners
+  @override
+  void initState() {
+    super.initState();
+    emailFocus.addListener((){
+      if (emailFocus.hasFocus){
+        //manos abajo en email
+        isHandsUp?.change(false);
+    }
+  });
+  passFocus.addListener((){
+    //manos arriba en password
+    isHandsUp?.change(passFocus.hasFocus);
+  });
+  }
   @override
   Widget build(BuildContext context) {
     //Para obtener el tamaño de la pantalla del dispositivo
@@ -53,11 +72,13 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             //Campo de texto del email
             TextField(
+              //Asignar el FocusNode al TextField
+              focusNode: emailFocus,
               onChanged: (value){
-                if (isHandsUp != null){
+                //if (isHandsUp != null){
                   //No tapar los ojos al escribir email
-                  isHandsUp!.change(false);
-                }
+                  //isHandsUp!.change(false);
+                //}
                 if (isChecking == null) return;
                 //Activa el modo chismoso
                 isChecking!.change(true);
@@ -76,11 +97,12 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             //Campo de texto del password
             TextField(
+              focusNode: passFocus,
               onChanged: (value){
-                if (isChecking != null){
+                //if (isChecking != null){
                   //No tapar los ojos al escribir email
-                  isChecking!.change(false);
-                }
+                  //isChecking!.change(false);
+                //}
                 if (isHandsUp == null) return;
                 //Activa el modo chismoso
                 isHandsUp!.change(true);
@@ -161,4 +183,11 @@ class _LoginScreenState extends State<LoginScreen> {
       )),
     );
   }
+  @override
+  void dispose(){
+    emailFocus.dispose();
+    passFocus.dispose();
+    super.dispose();
+  }
 }
+
