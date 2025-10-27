@@ -20,26 +20,20 @@ In this case the name of the State machine used in this project is "Login Mahine
 </p>
 <h2>👨‍💻🛠️Technologies used on the project</h2>
 
-<p>
-  <a href="https://flutter.dev" target="_blank" style="text-decoration:none; text-align:center;">
-    <img src="https://img.icons8.com/color/48/flutter.png" width="40" height="40" style="vertical-align:middle;"/>
-    <span style="font-size:16px; vertical-align:middle;">Flutter</span>
-  </a>
-  &nbsp;&nbsp;&nbsp;
-  <a href="https://dart.dev" target="_blank" style="text-decoration:none; text-align:center;">
-    <img src="https://img.icons8.com/color/48/dart.png" width="40" height="40" style="vertical-align:middle;"/>
-    <span style="font-size:16px; vertical-align:middle;">Dart</span>
-  </a>
-  &nbsp;&nbsp;&nbsp;
-  <a href="https://rive.app" target="_blank" style="text-decoration:none; text-align:center;">
-    <img src="https://cdn.worldvectorlogo.com/logos/rive-1.svg" width="40" height="40" style="vertical-align:middle;"/>
-    <span style="font-size:16px; vertical-align:middle;">Rive</span>
-  </a>
-</p>
+<ul style="margin: 0; padding-left: 20px;">
+  <li><a href="https://flutter.dev" target="_blank" style="text-decoration:none;">Flutter</a></li>
+  <li><a href="https://dart.dev" target="_blank" style="text-decoration:none;">Dart</a></li>
+  <li><a href="https://rive.app" target="_blank" style="text-decoration:none;">Rive</a></li>
+</ul>
 
 <h2>🧩Structure</h2>
 
 <h2>📽️Demo📽️</h2>
+<div align = "center">
+<img src = "https://i.imgur.com/RTQEgj0.gif" width = "300">
+  <img src = "https://i.imgur.com/MwMkRt0.gif" width = "300">
+</div>
+
 
 <h2>🧑‍🎓Subject information</h2>
 
