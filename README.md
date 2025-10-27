@@ -26,7 +26,15 @@ In this case the name of the State machine used in this project is "Login Mahine
   <li><a href="https://rive.app" target="_blank" style="text-decoration:none;">Rive</a></li>
 </ul>
 
-<h2>🧩Structure</h2>
+<h2>🧩Project Structure</h2>
+<pre>
+  assets/
+  └── animated_login_character.riv
+  lib/
+  ├── main.dart
+  └── screens/
+      └── login_screen.dart
+</pre>
 
 <h2>📽️Demo📽️</h2>
 <div align = "center">
@@ -35,7 +43,17 @@ In this case the name of the State machine used in this project is "Login Mahine
 </div>
 
 
-<h2>🧑‍🎓Subject information</h2>
+  
+  ## 🧑‍🎓Academic information
+  
+  **Subject**: Graficación <br>
+  **Teacher**: Rodrigo Fidel Gaxiola Sosa
+  
+  
+
 
 <h2>👍❤️Credits</h2>
 
+**Animation Source**: [Remix of Login Machine](https://rive.app/marketplace/3645-7621-remix-of-login-machine/)
+
+**Powered by Rive**
