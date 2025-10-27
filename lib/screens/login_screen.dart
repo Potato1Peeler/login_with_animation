@@ -67,51 +67,62 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   // 4.4 darle acción al botón
-  void _onLogin() async {
-    //Change - Para evitar el spam
-    if (isLoading) return;
+Future<void> _onLogin() async {
+  //Change - Evitar doble tap
+  if (isLoading) return; 
 
-    final email = emailCtrl.text.trim();
-    final pass = passCtrl.text;
+  final email = emailCtrl.text.trim();
+  final pass = passCtrl.text;
 
-    //recalcular errores
-    final eError = email.isEmpty
-        ? 'El campo no puede estar vacío'
-        : (!isValidEmail(email) ? 'Email inválido' : null);
-    final pError = getPasswordError(pass);
+  //Change - Recalcular errores
+  final eError = email.isEmpty
+      ? 'El campo no puede estar vacío'
+      : (!isValidEmail(email) ? 'Email inválido' : null);
+  final pError = getPasswordError(pass);
 
-    //4.5 para que se muestre en la ui el mensaje de error (Avisar que hubo un cambio)
-    setState(() {
-      emailError = eError;
-      passError = pError;
-      isLoading = true;
+  //4.5 para que se muestre en la ui el mensaje de error (Avisar que hubo un cambio)
+  setState(() {
+    emailError = eError;
+    passError = pError;
+  });
 
-      //4.6 cerrar el teclado y bajar las manos al momento de enviar
-      FocusScope.of(context).unfocus();
-      _typingDebounce?.cancel();
-      isChecking?.change(false);
-      isHandsUp?.change(false);
-      numLook?.value = 50.0; //mirada neutral
-    });
+  //4.6 cerrar el teclado y bajar las manos al momento de enviar
+  FocusScope.of(context).unfocus();
+  _typingDebounce?.cancel();
+  isChecking?.change(false);
+  isHandsUp?.change(false);
+  numLook?.value = 50.0; //mirada neutral
 
-    //Change - Para evitar el doble tap al momento de disparar un trigger
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await Future.delayed(const Duration(milliseconds: 100));
-      if (eError == null && pError == null) {
+  setState(() {
+    isLoading = true;
+  });
+
+  try {
+    //Change - Delay de espera 
+    await Future.delayed(const Duration(seconds: 2));
+
+    //Change - Para verificar si hay errores
+    final hasValidationErrors = eError != null || pError != null;
+
+    if (hasValidationErrors) {
+      //Change - Dependiendo si hay errores ejecutar fail
+      trigFail?.fire();
+    } else {
+      //Change - Si no hay errores entonces ejecutar success
+      final success = true;
+      if (success) {
         trigSuccess?.fire();
-      } else {
-        trigFail?.fire();
       }
-
-      //Change - Espera de un tiempo antes de reactviar el boton de login
-      await Future.delayed(const Duration(seconds: 2));
-      if (mounted) {
-        setState(() {
-          isLoading = false;
-        });
-      }
-    });
+    }
+  }  finally {
+    //Change - Mostrar el boton de login (sin importar si hubo fail o success)
+    if (mounted) {
+      setState(() {
+        isLoading = false;
+      });
+    }
   }
+}
 
   // 2.1) Listeners (oyentes/chismoso) escuchan todos los cambios que pasan
   @override
